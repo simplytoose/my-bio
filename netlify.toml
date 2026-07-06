@@ -1,0 +1,18 @@
+<Sequence>
+{/* Reason: Порушення цієї структури або помилка в налаштуваннях призведе до того, що Netlify або не збере проєкт через pnpm, або знову видасть 404. */}
+  <Step title="Налаштування збірки для Next.js" subtitle="Файл netlify.toml">
+    [build]
+      command = "pnpm run build"
+      publish = "out"
+  </Step>
+  <Step title="Змінні оточення для pnpm" subtitle="Вказуємо версію">
+    [build.environment]
+      PNPM_FLAGS = "--no-frozen-lockfile"
+  </Step>
+  <Step title="Правило для запобігання 404" subtitle="Обробка маршрутів">
+    [[redirects]]
+      from = "/*"
+      to = "/index.html"
+      status = 200
+  </Step>
+</Sequence>
